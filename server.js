@@ -11,7 +11,7 @@ const DB_FILE = process.env.NODE_ENV === 'production'
 
 // CORS configuration
 const corsOptions = {
-  origin: ['https://peaceland-game.com', 'http://localhost:3000'], // Add any other allowed origins
+  origin: ['https://peaceland-game.com', 'http://localhost:3000', '*'], // Add any other allowed origins
   optionsSuccessStatus: 200
 };
 
