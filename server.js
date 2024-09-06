@@ -1,13 +1,21 @@
 const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const DB_FILE = process.env.NODE_ENV === 'production' 
+const DB_FILE = process.env.NODE_ENV === 'production'
   ? path.join(__dirname, 'data', 'db.json')
   : path.join(__dirname, 'data', 'db.json');
 
+// CORS configuration
+const corsOptions = {
+  origin: ['https://peaceland-game.com', 'http://localhost:3000'], // Add any other allowed origins
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Helper function to read the JSON file
