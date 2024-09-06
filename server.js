@@ -3,8 +3,10 @@ const fs = require('fs').promises;
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
-const DB_FILE = path.join(__dirname, 'data', 'db.json');
+const PORT = process.env.PORT || 3000;
+const DB_FILE = process.env.NODE_ENV === 'production' 
+  ? path.join(__dirname, 'data', 'db.json')
+  : path.join(__dirname, 'data', 'db.json');
 
 app.use(express.json());
 
@@ -117,6 +119,6 @@ app.get('/debug/db', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
   console.log(`Database file location: ${DB_FILE}`);
 });
